@@ -1,5 +1,5 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({IntroText = "Sa Kanki",Name = "Cathe Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "konfig cathe"})
+local Window = OrionLib:MakeWindow({IntroText = "Sa Kanki",Name = "Cathe Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "Cathe Hub sussy baka S3x FBI among us"})
 
 _G.AutoClick = false
 
@@ -82,6 +82,7 @@ TargetWalkspeed = 0
 FarmTab:AddLabel("Use with AutoRun")
 
 CreditsTab:AddParagraph("Cathe Pro","Tsk kullandigin icin")
+CreditsTab:AddParagraph("Dc invite","discord.gg/PenguX")
 
 coroutine.resume(NotificationCoroutine)
 
