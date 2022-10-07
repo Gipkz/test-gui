@@ -1,0 +1,90 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({IntroText = "Sa Kanki",Name = "Cathe Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "konfig cathe"})
+
+_G.AutoClick = false
+
+function AutoClick()
+    while _G.AutoClick == true do
+game:GetService("ReplicatedStorage").Knit.Services.ClickerService.RF.PlayerClick:InvokeServer()
+wait(.0000000000001)
+end
+end
+--
+local FarmTab = Window:MakeTab({
+	Name = "Farm",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+FarmTab:AddToggle({
+	Name = "AutoClicker",
+	Default = false,
+	Callback = function(Value)
+_G.AutoClick = Value 
+AutoClick() 
+    end
+})
+local CharTab = Window:MakeTab({
+	Name = "Custom Speed",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+local TargetWalkspeed
+CharTab:AddSlider({
+	Name = "Hiz",
+	Min = 0,
+	Max = 20500,
+	Default = 0,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	Callback = function(Value)
+		TargetWalkspeed = Value
+	end    
+})
+game:GetService("RunService").RenderStepped:Connect(function()
+    pcall(function()
+        if game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
+            game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * TargetWalkspeed/50)
+        end
+    end)
+end)
+local CreditsTab = Window:MakeTab({
+	Name = "Credits",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+FarmTab:AddButton({
+	Name = "Max Speed",
+	Default = false,
+	Callback = function(Value)
+game:GetService("RunService").RenderStepped:Connect(function()
+    pcall(function()
+        if game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
+            game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * TargetWalkspeed/50)
+        end
+    end)
+end)
+TargetWalkspeed = 20500
+    end
+})
+FarmTab:AddButton({
+	Name = "Reset Speed",
+	Callback = function()
+game:GetService("RunService").RenderStepped:Connect(function()
+    pcall(function()
+        if game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
+            game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * TargetWalkspeed/50)
+        end
+    end)
+end)
+TargetWalkspeed = 0
+ 	end    
+})
+FarmTab:AddLabel("Use with AutoRun")
+
+CreditsTab:AddParagraph("Cathe Pro","Tsk kullandigin icin")
+
+coroutine.resume(NotificationCoroutine)
+
+OrionLib:Init()
+
+task.wait(2)
